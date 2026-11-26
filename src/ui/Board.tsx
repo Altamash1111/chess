@@ -154,12 +154,12 @@ export function Board(p: BoardProps) {
         {p.arrows && p.arrows.length > 0 && (
           <svg className="arrows" viewBox="0 0 8 8">
             <defs>
-              {Array.from(new Set(p.arrows.map(a => a.color ?? '#f0b429'))).map(c => (
+              {Array.from(new Set(p.arrows.map(a => a.color ?? '#e9a23b'))).map(c => (
                 <marker key={c} id={`ah-${c.slice(1)}`} markerWidth="4" markerHeight="4" refX="2.2" refY="2" orient="auto"><path d="M0 0 L4 2 L0 4z" fill={c} /></marker>
               ))}
             </defs>
             {p.arrows.map((a, i) => {
-              const f = center(a.from), t = center(a.to), c = a.color ?? '#f0b429';
+              const f = center(a.from), t = center(a.to), c = a.color ?? '#e9a23b';
               const dx = t.x - f.x, dy = t.y - f.y, len = Math.hypot(dx, dy) || 1;
               const ex = t.x - (dx / len) * 0.28, ey = t.y - (dy / len) * 0.28;
               return <line key={i} x1={f.x} y1={f.y} x2={ex} y2={ey} stroke={c} strokeWidth="0.15" strokeLinecap="round" opacity="0.85" markerEnd={`url(#ah-${c.slice(1)})`} />;

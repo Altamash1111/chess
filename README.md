@@ -25,7 +25,7 @@ game review with blunder detection.
 ## Honest notes
 - chess.js could not be installed offline, so the rules library is my own (`src/chess`), validated by perft on 6 standard positions.
 - The Vite dev/build path (`npm run dev`) is configured but was NOT run in the build environment (no network); the esbuild standalone build was tested.
-- Results: rules/book/engine suites pass; 23/23 headless-Chromium UI tests pass; Grandmaster scored 8/8 vs Beginner–Advanced (checkmates, ~4–5 s/move).
+- Results: rules/book/engine suites pass; 24/24 headless-Chromium UI tests pass; Grandmaster scored 8/8 vs Beginner–Advanced (checkmates, ~4–5 s/move).
 - Strength is not rated against external engines; I make no Elo claim. Expect a strong club-level-or-better tactical player, not Stockfish.
 
 ## Deploying to Vercel (via GitHub)

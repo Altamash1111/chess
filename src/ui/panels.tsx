@@ -308,7 +308,7 @@ export function analysisArrows(mgr: AnalysisManager, ctl: GameController): Arrow
     return out;
   }
   if (!mgr.on) return [];
-  const cols = ['#4ade80', '#60a5fa', '#f0b429'];
+  const cols = ['#5fd68f', '#6cc9b5', '#e9a23b'];
   return mgr.lines.slice(0, 3).map((l, i) => ({ from: sqFromName(l.uci.slice(0, 2)), to: sqFromName(l.uci.slice(2, 4)), color: cols[i] }));
 }
 

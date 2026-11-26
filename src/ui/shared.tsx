@@ -60,7 +60,15 @@ export function MoveList({ ctl, review, onSelect }: { ctl: GameController; revie
   const listRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (cur === 0 && listRef.current) listRef.current.scrollTop = 0;
-    else curRef.current?.scrollIntoView({ block: 'nearest' });
+    else {
+      // scroll only the move list itself, never the page (scrollIntoView jumps the whole page on phones)
+      const box = listRef.current, el = curRef.current;
+      if (box && el) {
+        const top = el.getBoundingClientRect().top - box.getBoundingClientRect().top + box.scrollTop;
+        if (top < box.scrollTop) box.scrollTop = top;
+        else if (top + el.offsetHeight > box.scrollTop + box.clientHeight) box.scrollTop = top + el.offsetHeight - box.clientHeight;
+      }
+    }
   }, [cur, plies.length]);
   const rows: React.ReactNode[] = [];
   const startBlack = ctl.game.startFenTurn() === 1;

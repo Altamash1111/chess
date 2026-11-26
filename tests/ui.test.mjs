@@ -409,6 +409,15 @@ await ok('full screen works on a phone-sized screen', async () => {
   assert(b.width <= 390 && b.width > 300, 'board fits phone width: ' + b.width);
 });
 
+await ok('phone: playing moves does not scroll the page', async () => {
+  const p = await open({}, { width: 390, height: 780 });
+  await p.evaluate(() => window.scrollTo(0, 0));
+  await clickSq(p, 'e2'); await clickSq(p, 'e4'); await waitMoves(p, 2);
+  await clickSq(p, 'g1'); await clickSq(p, 'f3'); await waitMoves(p, 4);
+  const y1 = await p.evaluate(() => window.scrollY);
+  assert(y1 === 0, `page scrolled after moves: 0 -> ${y1}`);
+});
+
 await browser.close();
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
